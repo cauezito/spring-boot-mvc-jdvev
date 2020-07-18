@@ -44,4 +44,13 @@ public class UsuarioController {
 		return mv;
 	}
 	
+	@GetMapping("/excluirUsuario/{id}")
+	public ModelAndView excluir(@PathVariable("id") Long id) {
+		usuarioRepository.deleteById(id);
+		ModelAndView mv = new ModelAndView("cadastro/usuario");
+		mv.addObject("usuarios", usuarioRepository.findAll());
+		mv.addObject("usuario", new Usuario());
+		return mv;
+	}
+	
 }

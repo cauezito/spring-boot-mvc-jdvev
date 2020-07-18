@@ -57,7 +57,7 @@
 					<th class="uk-width-small">ID</th>
 					<th>Nome</th>
 					<th>Sobrenome</th>
-					<th>Ação</th>
+					<th>Ações</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -65,7 +65,10 @@
 					<td th:text="${usuario.id}"></td>
 					<td th:text="${usuario.nome}"></td>
 					<td th:text="${usuario.sobrenome}"></td>
-					<td><a th:href="@{/editarUsuario/{id}(id=${usuario.id})}">editar</a></td>
+					<td>
+						<a th:href="@{/editarUsuario/{id}(id=${usuario.id})}">editar</a>|
+						<a th:href="@{/excluirUsuario/{id}(id=${usuario.id})}">excluir</a>	
+					</td>
 				</tr>
 			</tbody>
 		</table>
