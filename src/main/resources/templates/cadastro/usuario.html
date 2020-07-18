@@ -14,42 +14,50 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/uikit@3.5.5/dist/js/uikit-icons.min.js"></script>
 </head>
-	<style>
-		body{
-			background-color: #dbedf3;
-		}
-	</style>
+<style>
+body {
+	background-color: #dbedf3;
+}
+</style>
 <body>
 
 	<div class="uk-container">
-	<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
-		<form action="/salvarUsuario" method="POST"
-			class="uk-form-horizontal uk-margin-large" th:object = "${usuario}">
-			
-			<div class="uk-margin uk-hidden">
-				<label class="uk-form-label" for="form-horizontal-text">Id:</label>
-				<div class="uk-form-controls">
-					<input class="uk-input" id="form-horizontal-text" name="id"
-						type="text" th:field="*{id}">
+		<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
+			<form action="/salvarUsuario" method="POST"
+				class="uk-form-horizontal uk-margin-large" th:object="${usuario}">
+
+				<div class="uk-margin uk-hidden">
+					<label class="uk-form-label" for="form-horizontal-text">Id:</label>
+					<div class="uk-form-controls">
+						<input class="uk-input" id="form-horizontal-text" name="id"
+							type="text" th:field="*{id}">
+					</div>
 				</div>
-			</div>
-			
-			<div class="uk-margin">
-				<label class="uk-form-label" for="form-horizontal-text">Nome:</label>
-				<div class="uk-form-controls">
-					<input class="uk-input" id="form-horizontal-text" name="nome"
-						type="text" th:field="*{nome}">
+
+				<div class="uk-margin">
+					<label class="uk-form-label" for="form-horizontal-text">Nome:</label>
+					<div class="uk-form-controls">
+						<input class="uk-input" id="form-horizontal-text" name="nome"
+							type="text" th:field="*{nome}">
+					</div>
 				</div>
-			</div>
-			<div class="uk-margin">
-				<label class="uk-form-label" for="form-horizontal-text">Sobrenome:</label>
-				<div class="uk-form-controls">
-					<input class="uk-input" id="form-horizontal-text" name="sobrenome" th:field="*{sobrenome}">
+				<div class="uk-margin">
+					<label class="uk-form-label" for="form-horizontal-text">Sobrenome:</label>
+					<div class="uk-form-controls">
+						<input class="uk-input" id="form-horizontal-text" name="sobrenome"
+							th:field="*{sobrenome}">
+					</div>
 				</div>
-			</div>	
-			<button class="uk-button uk-button-primary" type="submit">SALVAR</button>
-		</form>
+				<button class="uk-button uk-button-primary" type="submit">SALVAR</button>
+			</form>
 		</div>
+
+		<form class="uk-search uk-search-default" method="post" action="pesquisarUsuario">
+			
+			 <input class="uk-search-input"
+				type="search" placeholder="Busca por nome" name="nomePesquisado">
+				<button type="submit">Pesquisar</button>
+		</form>
 
 		<table class="uk-table uk-table-justify uk-table-divider">
 			<thead>
@@ -65,9 +73,8 @@
 					<td th:text="${usuario.id}"></td>
 					<td th:text="${usuario.nome}"></td>
 					<td th:text="${usuario.sobrenome}"></td>
-					<td>
-						<a th:href="@{/editarUsuario/{id}(id=${usuario.id})}">editar</a>|
-						<a th:href="@{/excluirUsuario/{id}(id=${usuario.id})}">excluir</a>	
+					<td><a th:href="@{/editarUsuario/{id}(id=${usuario.id})}">editar</a>|
+						<a th:href="@{/excluirUsuario/{id}(id=${usuario.id})}">excluir</a>
 					</td>
 				</tr>
 			</tbody>
