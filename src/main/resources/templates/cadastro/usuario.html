@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<form action="/salvarUsuario" method="POST">
+		<label>Nome:</label>
+		<input name="nome"><br>
+		<label>Sobrenome:</label>
+		<input name="sobrenome">
+		<button type="submit">Salvar</button>
+	</form>
+	
+	<table>
+		<tr th:each = "usuario : ${usuarios}">
+			<td th:text = "${usuario.id}"></td>
+			<td th:text = "${usuario.nome}"></td>
+			<td th:text = "${usuario.sobrenome}"></td>
+		</tr>
+	</table>
+	
+</body>
+</html>
