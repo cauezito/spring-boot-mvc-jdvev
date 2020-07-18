@@ -1,26 +1,74 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<title>Usuários</title>
+<!-- UIkit CSS -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/uikit@3.5.5/dist/css/uikit.min.css" />
+
+<!-- UIkit JS -->
+<script
+	src="https://cdn.jsdelivr.net/npm/uikit@3.5.5/dist/js/uikit.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/uikit@3.5.5/dist/js/uikit-icons.min.js"></script>
 </head>
+	<style>
+		body{
+			background-color: #dbedf3;
+		}
+	</style>
 <body>
 
-	<form action="/salvarUsuario" method="POST">
-		<label>Nome:</label>
-		<input name="nome"><br>
-		<label>Sobrenome:</label>
-		<input name="sobrenome">
-		<button type="submit">Salvar</button>
-	</form>
-	
-	<table>
-		<tr th:each = "usuario : ${usuarios}">
-			<td th:text = "${usuario.id}"></td>
-			<td th:text = "${usuario.nome}"></td>
-			<td th:text = "${usuario.sobrenome}"></td>
-		</tr>
-	</table>
-	
+	<div class="uk-container">
+	<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
+		<form action="/salvarUsuario" method="POST"
+			class="uk-form-horizontal uk-margin-large" th:object = "${usuario}">
+			
+			<div class="uk-margin uk-hidden">
+				<label class="uk-form-label" for="form-horizontal-text">Id:</label>
+				<div class="uk-form-controls">
+					<input class="uk-input" id="form-horizontal-text" name="id"
+						type="text" th:field="*{id}">
+				</div>
+			</div>
+			
+			<div class="uk-margin">
+				<label class="uk-form-label" for="form-horizontal-text">Nome:</label>
+				<div class="uk-form-controls">
+					<input class="uk-input" id="form-horizontal-text" name="nome"
+						type="text" th:field="*{nome}">
+				</div>
+			</div>
+			<div class="uk-margin">
+				<label class="uk-form-label" for="form-horizontal-text">Sobrenome:</label>
+				<div class="uk-form-controls">
+					<input class="uk-input" id="form-horizontal-text" name="sobrenome" th:field="*{sobrenome}">
+				</div>
+			</div>	
+			<button class="uk-button uk-button-primary" type="submit">SALVAR</button>
+		</form>
+		</div>
+
+		<table class="uk-table uk-table-justify uk-table-divider">
+			<thead>
+				<tr>
+					<th class="uk-width-small">ID</th>
+					<th>Nome</th>
+					<th>Sobrenome</th>
+					<th>Ação</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="usuario : ${usuarios}">
+					<td th:text="${usuario.id}"></td>
+					<td th:text="${usuario.nome}"></td>
+					<td th:text="${usuario.sobrenome}"></td>
+					<td><a th:href="@{/editarUsuario/{id}(id=${usuario.id})}">editar</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </body>
 </html>

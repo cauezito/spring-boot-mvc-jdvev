@@ -1,7 +1,11 @@
 package br.com.cauezito.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,23 +20,28 @@ public class UsuarioController {
 	private UsuarioRepository usuarioRepository;
 
 	@RequestMapping(method = RequestMethod.GET, value = "/cadastroUsuario")
-	public String inicio() {
-		return "cadastro/usuario";
+	public ModelAndView inicio() {
+		ModelAndView mv = new ModelAndView("cadastro/usuario");
+		mv.addObject("usuario", new Usuario());
+		return mv;
 	}
-
-	@RequestMapping(method = RequestMethod.POST, value = "/salvarUsuario")
-	public String salvar(Usuario usuario) {
+	// ** = ignora tudo o que vier antes na url
+	@RequestMapping(method = RequestMethod.POST, value = "**/salvarUsuario")
+	public ModelAndView salvar(Usuario usuario) {
 		usuarioRepository.save(usuario);
-		return "cadastro/usuario";
-	}
-	
-	@RequestMapping(method = RequestMethod.GET, value="/listarUsuarios")
-	public ModelAndView usuarios() {
 		ModelAndView mv = new ModelAndView("cadastro/usuario");
 		Iterable<Usuario> usuarios = usuarioRepository.findAll();
 		mv.addObject("usuarios", usuarios);
+		mv.addObject("usuario", new Usuario());
 		return mv;
-		
+	}	
+	
+	@GetMapping("/editarUsuario/{id}")
+	public ModelAndView editar(@PathVariable("id") Long id) {
+		ModelAndView mv = new ModelAndView("cadastro/usuario");
+		Optional<Usuario> usuario = usuarioRepository.findById(id);
+		mv.addObject("usuario", usuario.get());
+		return mv;
 	}
 	
 }
