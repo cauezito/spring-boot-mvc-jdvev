@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Usuários</title>
+<!-- UIkit CSS -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/uikit@3.5.5/dist/css/uikit.min.css" />
+
+<!-- UIkit JS -->
+<script
+	src="https://cdn.jsdelivr.net/npm/uikit@3.5.5/dist/js/uikit.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/uikit@3.5.5/dist/js/uikit-icons.min.js"></script>
+</head>
+<style>
+body {
+	background-color: #dbedf3;
+}
+</style>
+<body>
+
+	<div class="uk-container">
+		<div th:each="u	: ${usuario}">
+			<p>ID: <span th:text="${u.id}"></span></p>
+			<p>NOME: <span th:text="${u.nome}"></span></p>
+			<p>SOBRENOME: <span th:text="${u.sobrenome}"></span></p>
+		</div>
+	</div>
+</body>
+</html>

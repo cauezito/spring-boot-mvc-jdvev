@@ -24,6 +24,8 @@ public class UsuarioController {
 	@RequestMapping(method = RequestMethod.GET, value = "/cadastroUsuario")
 	public ModelAndView inicio() {
 		ModelAndView mv = new ModelAndView("cadastro/usuario");
+		Iterable<Usuario> usuarios = usuarioRepository.findAll();
+		mv.addObject("usuarios", usuarios);
 		mv.addObject("usuario", new Usuario());
 		return mv;
 	}
@@ -60,6 +62,14 @@ public class UsuarioController {
 		ModelAndView mv = new ModelAndView("cadastro/usuario");
 		mv.addObject("usuarios", usuarioRepository.buscaUsuarioPorNome(nomePesquisado));
 		mv.addObject("usuario", new Usuario());
+		return mv;
+	}
+	
+	@GetMapping("/telefones/{id}")
+	public ModelAndView exibeTelefones(@PathVariable("id") Long id) {
+		ModelAndView mv = new ModelAndView("cadastro/telefones");
+		Optional<Usuario> usuario = usuarioRepository.findById(id);
+		mv.addObject("usuario", usuario.get());
 		return mv;
 	}
 	
