@@ -75,6 +75,7 @@ public class UsuarioController {
 		ModelAndView mv = new ModelAndView("cadastro/telefones");
 		Optional<Usuario> usuario = usuarioRepository.findById(id);
 		mv.addObject("usuario", usuario.get());
+		mv.addObject("telefones", telefoneRepository.getTelefones(id));
 		return mv;
 	}
 	
@@ -85,6 +86,7 @@ public class UsuarioController {
 		telefone.setUsuario(usuario);
 		telefoneRepository.save(telefone);
 		ModelAndView mv = new ModelAndView("cadastro/telefones");
+		mv.addObject("telefones", telefoneRepository.getTelefones(id));
 		mv.addObject("usuario", usuario);
 		
 		return mv;

@@ -38,6 +38,14 @@ body {
 		<button type="submit">Incluir</button>
 		</form>
 		</div>
+		
+		<table>
+			<tr th:each="t : ${telefones}">
+				<td th:text="${t.numero}"/>
+				<td th:text="${t.tipo}"/>
+			</tr>
+		</table>
+		
 	</div>
 </body>
 </html>
