@@ -26,6 +26,17 @@ body {
 			<p>ID: <span th:text="${u.id}"></span></p>
 			<p>NOME: <span th:text="${u.nome}"></span></p>
 			<p>SOBRENOME: <span th:text="${u.sobrenome}"></span></p>
+	
+		
+		<h5>Telefones</h5>
+		<form method="post" th:action="@{/addTelefone/{id}(id=${usuario.id})}">
+		<label>Número:</label>
+		<input type="number" name="numero">
+		<br>
+		<label>Tipo:</label>
+		<input type="text" name="tipo">
+		<button type="submit">Incluir</button>
+		</form>
 		</div>
 	</div>
 </body>

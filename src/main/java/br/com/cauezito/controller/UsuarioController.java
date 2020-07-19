@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.cauezito.model.Telefone;
 import br.com.cauezito.model.Usuario;
+import br.com.cauezito.repository.TelefoneRepository;
 import br.com.cauezito.repository.UsuarioRepository;
 
 @Controller
@@ -20,6 +22,9 @@ public class UsuarioController {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+	
+	@Autowired
+	private TelefoneRepository telefoneRepository;
 
 	@RequestMapping(method = RequestMethod.GET, value = "/cadastroUsuario")
 	public ModelAndView inicio() {
@@ -70,6 +75,18 @@ public class UsuarioController {
 		ModelAndView mv = new ModelAndView("cadastro/telefones");
 		Optional<Usuario> usuario = usuarioRepository.findById(id);
 		mv.addObject("usuario", usuario.get());
+		return mv;
+	}
+	
+	@PostMapping("**/addTelefone/{id}")
+	public ModelAndView adicionarTelefone(Telefone telefone, 	
+			@PathVariable("id") Long id) {
+		Usuario usuario = usuarioRepository.findById(id).get();
+		telefone.setUsuario(usuario);
+		telefoneRepository.save(telefone);
+		ModelAndView mv = new ModelAndView("cadastro/telefones");
+		mv.addObject("usuario", usuario);
+		
 		return mv;
 	}
 	
