@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -31,8 +32,8 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter{
 	//Cria autenticação do usuário (banco de dados ou memória)
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance())
-		.withUser("cauezito").password("123").roles("ADMIN");
+		auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
+		.withUser("cauezito").password("$2a$10$ZzBMcvbEVi1eogZNwawpfedsuaBdJPlkbNrGaDP5n3O0z5aGR3Hf6").roles("ADMIN");
 	}
 	
 	@Override //ignora url's específicas

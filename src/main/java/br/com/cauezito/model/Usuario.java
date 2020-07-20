@@ -32,6 +32,6 @@ public class Usuario implements Serializable {
 	@NotNull(message = "O sobrenome deve ser preenchido")
 	private String sobrenome;
 	
-	@OneToMany(mappedBy = "usuario", orphanRemoval = true, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private List<Telefone> telefones;
 }
