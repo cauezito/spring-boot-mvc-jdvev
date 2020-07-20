@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Usuários</title>
+<!-- UIkit CSS -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/uikit@3.5.5/dist/css/uikit.min.css" />
+
+<!-- UIkit JS -->
+<script
+	src="https://cdn.jsdelivr.net/npm/uikit@3.5.5/dist/js/uikit.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/uikit@3.5.5/dist/js/uikit-icons.min.js"></script>
+</head>
+<style>
+body {
+	background-color: #dbedf3;
+}
+</style>
+<body>
+
+	<div class="uk-container">
+		<div th:each="u	: ${usuario}">
+			<p>ID: <span th:text="${u.id}"></span></p>
+			<p>NOME: <span th:text="${u.nome}"></span></p>
+			<p>SOBRENOME: <span th:text="${u.sobrenome}"></span></p>
+	
+		
+		<h5>Telefones</h5>
+		<form method="post" th:action="@{/addTelefone/{id}(id=${usuario.id})}">
+		<label>Número:</label>
+		<input type="number" name="numero">
+		<br>
+		<label>Tipo:</label>
+		<input type="text" name="tipo">
+		<button type="submit">Incluir</button>
+		</form>
+		</div>
+		
+		<table>
+			<tr th:each="t : ${telefones}">
+				<td th:text="${t.numero}"/>
+				<td th:text="${t.tipo}"/>
+				<td>	<a th:href="@{/excluirTelefone/{idTelefone}(idTelefone=${t.id})}">excluir</a></td>
+			</tr>
+		</table>
+		
+	</div>
+</body>
+</html>
