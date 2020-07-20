@@ -22,6 +22,11 @@ body {
 <body>
 
 	<div class="uk-container">
+	
+		<div th:each="m : ${msg}">
+			<span th:text="${m}"></span>
+		</div>
+	
 		<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
 			<form action="/salvarUsuario" method="POST"
 				class="uk-form-horizontal uk-margin-large" th:object="${usuario}">
@@ -74,7 +79,7 @@ body {
 					<td><a th:href="@{/telefones/{id}(id=${usuario.id})}"><span th:text="${usuario.nome}"></span></a></td>
 					<td th:text="${usuario.sobrenome}"></td>
 					<td><a th:href="@{/editarUsuario/{id}(id=${usuario.id})}">editar</a>|
-						<a th:href="@{/excluirUsuario/{id}(id=${usuario.id})}">excluir</a>
+					<a th:href="@{/excluirUsuario/{id}(id=${usuario.id})}">excluir</a>
 					</td>
 				</tr>
 			</tbody>

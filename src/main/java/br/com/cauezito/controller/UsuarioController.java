@@ -1,9 +1,15 @@
 package br.com.cauezito.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,9 +42,20 @@ public class UsuarioController {
 	}
 	// ** = ignora tudo o que vier antes na url
 	@RequestMapping(method = RequestMethod.POST, value = "**/salvarUsuario")
-	public ModelAndView salvar(Usuario usuario) {
-		usuarioRepository.save(usuario);
+	public ModelAndView salvar(@Valid Usuario usuario, BindingResult bindingResult) {
 		ModelAndView mv = new ModelAndView("cadastro/usuario");
+		if(bindingResult.hasErrors()) {
+			Iterable<Usuario> usuarios = usuarioRepository.findAll();
+			mv.addObject("usuarios", usuarios);
+			mv.addObject("usuario", usuario);
+			List<String> mensagens = new ArrayList<String>();
+			for(ObjectError error: bindingResult.getAllErrors()) {
+				mensagens.add(error.getDefaultMessage()); //Anotações @ da entity
+			}
+			mv.addObject("msg", mensagens);
+			return mv;
+		}
+		usuarioRepository.save(usuario);		
 		Iterable<Usuario> usuarios = usuarioRepository.findAll();
 		mv.addObject("usuarios", usuarios);
 		mv.addObject("usuario", new Usuario());
