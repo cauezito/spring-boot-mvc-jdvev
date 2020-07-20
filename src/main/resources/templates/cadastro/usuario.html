@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org" 
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 <title>Usuários</title>
@@ -28,6 +29,7 @@ body {
 		</div>
 	
 		<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
+		<div sec:authorize="hasRole('ROLE_ADMIN')">
 			<form action="/salvarUsuario" method="POST"
 				class="uk-form-horizontal uk-margin-large" th:object="${usuario}">
 
@@ -38,8 +40,7 @@ body {
 							type="text" th:field="*{id}">
 					</div>
 				</div>
-
-				<div class="uk-margin">
+				<div class="uk-margin" >
 					<label class="uk-form-label" for="form-horizontal-text">Nome:</label>
 					<div class="uk-form-controls">
 						<input class="uk-input" id="form-horizontal-text" name="nome"
@@ -55,6 +56,7 @@ body {
 				</div>
 				<button class="uk-button uk-button-primary" type="submit">SALVAR</button>
 			</form>
+			</div>
 		</div>
 
 		<form class="uk-search uk-search-default" method="post" action="pesquisarUsuario">

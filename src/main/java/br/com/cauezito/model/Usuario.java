@@ -12,7 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -49,8 +51,9 @@ public class Usuario implements Serializable, UserDetails {
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private List<Telefone> telefones;
 	
-	@OneToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "usuarios_role", joinColumns = @JoinColumn(name = "usuario_id",
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "usuarios_role", uniqueConstraints = @UniqueConstraint (columnNames = {"usuario_id", "role_id"}, name = "unique_role_user") ,
+	joinColumns = @JoinColumn(name = "usuario_id",
 	referencedColumnName = "id", table =  "usuario"),
 	inverseJoinColumns = @JoinColumn(name="role_id", referencedColumnName = "id", table = "role"))
 	private List<Role> roles;
