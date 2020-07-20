@@ -29,6 +29,8 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter{
 		.authorizeRequests()
 		//qualquer usuário acessa a página inicial
 		.antMatchers(HttpMethod.GET, "/").permitAll()
+		//apenas administradores acessam o cadastro
+		.antMatchers(HttpMethod.GET, "/cadastroUsuario").hasAnyRole("ADMIN")
 		.anyRequest().authenticated()
 		.and().formLogin().permitAll() //permite qualquer usuário
 		.and().logout() //mapeia url de logout e invalida usuário 

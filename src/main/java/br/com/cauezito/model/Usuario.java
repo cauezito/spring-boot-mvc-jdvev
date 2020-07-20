@@ -6,9 +6,12 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -37,22 +40,24 @@ public class Usuario implements Serializable, UserDetails {
 	@NotNull(message = "O sobrenome deve ser preenchido")
 	private String sobrenome;
 
-	@NotEmpty(message = "A senha deve ser preenchido")
-	@NotNull(message = "A senha deve ser preenchido")
 	@Length(min = 8, max = 30)
 	private String login;
 
-	@NotEmpty(message = "A senha deve ser preenchido")
-	@NotNull(message = "A senha deve ser preenchido")
 	@Length(min = 6, max = 20)
 	private String senha;
 
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private List<Telefone> telefones;
+	
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "usuarios_role", joinColumns = @JoinColumn(name = "usuario_id",
+	referencedColumnName = "id", table =  "usuario"),
+	inverseJoinColumns = @JoinColumn(name="role_id", referencedColumnName = "id", table = "role"))
+	private List<Role> roles;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return null;
+		return roles;
 	}
 
 	@Override

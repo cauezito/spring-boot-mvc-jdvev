@@ -1,15 +1,18 @@
 package br.com.cauezito.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.cauezito.model.Usuario;
 import br.com.cauezito.repository.UsuarioRepository;
 
 @Service
+@Transactional
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
@@ -22,7 +25,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			throw new UsernameNotFoundException("Usuário não encontrado");
 		}
 		
-		return usuario;
+		return new User(usuario.getLogin(), usuario.getPassword(), usuario.getAuthorities());
 	}
 
 }
