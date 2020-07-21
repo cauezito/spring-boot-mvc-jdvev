@@ -60,6 +60,21 @@ body {
 						</div>
 					</div>
 
+
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-stacked-select">Gênero</label>
+						<div class="uk-form-controls">
+							<select class="uk-select" id="form-stacked-select"
+								th:field="*{genero}">
+								<option selected="selected"  value="">Qual é o seu gênero?</option>
+								<option value="FEMININO" th:text="Feminino" />
+								<option value="MASCULINO" th:text="Masculino" />
+								<option value="NBINARIO" th:text="Nãobinário" />
+								<option value="OUTRO" th:text="Outro" />
+							</select>
+						</div>
+					</div>
+
 					<div class="uk-margin">
 						<label class="uk-form-label" for="form-horizontal-text">Cep:</label>
 						<div class="uk-form-controls">
@@ -67,55 +82,55 @@ body {
 								type="text" size="10" maxlength="9" />
 						</div>
 					</div>
-					
+
 					<div class="uk-margin">
 						<label class="uk-form-label" for="form-horizontal-text">Rua:</label>
 						<div class="uk-form-controls">
 							<input class="uk-input" id="rua" name="rua" th:field="*{rua}"
-								type="text" size="60"/>
+								type="text" size="60" />
 						</div>
 					</div>
-					
+
 					<div class="uk-margin">
 						<label class="uk-form-label" for="form-horizontal-text">Bairro:</label>
 						<div class="uk-form-controls">
-							<input class="uk-input" id="bairro" name="bairro" th:field="*{bairro}"
-								type="text" size="40"/>
+							<input class="uk-input" id="bairro" name="bairro"
+								th:field="*{bairro}" type="text" size="40" />
 						</div>
 					</div>
-					
+
 					<div class="uk-margin">
 						<label class="uk-form-label" for="form-horizontal-text">Cidade:</label>
 						<div class="uk-form-controls">
-							<input class="uk-input" id="cidade" name="cidade" th:field="*{cidade}"
-								type="text" size="40"/>
+							<input class="uk-input" id="cidade" name="cidade"
+								th:field="*{cidade}" type="text" size="40" />
 						</div>
 					</div>
-					
+
 					<div class="uk-margin">
 						<label class="uk-form-label" for="form-horizontal-text">UF:</label>
 						<div class="uk-form-controls">
 							<input class="uk-input" id="uf" name="uf" th:field="*{uf}"
-								type="text" size="2"/>
+								type="text" size="2" />
 						</div>
 					</div>
-					
-						<div class="uk-margin">
+
+					<div class="uk-margin">
 						<label class="uk-form-label" for="form-horizontal-text">Login:</label>
 						<div class="uk-form-controls">
-							<input class="uk-input" id="login" name="login" th:field="*{login}"
-								type="text"  min="8" maxlength="20"/>
+							<input class="uk-input" id="login" name="login"
+								th:field="*{login}" type="text" min="8" maxlength="20" />
 						</div>
 					</div>
-					
-						<div class="uk-margin">
+
+					<div class="uk-margin">
 						<label class="uk-form-label" for="form-horizontal-text">senha:</label>
 						<div class="uk-form-controls">
-							<input class="uk-input" id="senha" name="senha" th:field="*{senha}"
-								type="text" size="60"/>
+							<input class="uk-input" id="senha" name="senha"
+								th:field="*{senha}" type="text" size="60" />
 						</div>
 					</div>
-					
+
 
 					<button class="uk-button uk-button-primary" type="submit">SALVAR</button>
 				</form>
@@ -152,6 +167,6 @@ body {
 			</tbody>
 		</table>
 	</div>
-<script type="text/javascript" src="../../js/script.js"></script>
+	<script type="text/javascript" src="../../js/script.js"></script>
 </body>
 </html>
