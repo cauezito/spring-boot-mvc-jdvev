@@ -57,6 +57,12 @@ public class Usuario implements Serializable, UserDetails {
 	referencedColumnName = "id", table =  "usuario"),
 	inverseJoinColumns = @JoinColumn(name="role_id", referencedColumnName = "id", table = "role"))
 	private List<Role> roles;
+	
+	private String cep;
+	private String rua;
+	private String bairro;
+	private String uf;
+	private String cidade;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

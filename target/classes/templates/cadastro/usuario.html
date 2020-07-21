@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org" 
+	xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 <title>Usuários</title>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+	crossorigin="anonymous"></script>
+
 <!-- UIkit CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/uikit@3.5.5/dist/css/uikit.min.css" />
@@ -23,47 +28,106 @@ body {
 <body>
 
 	<div class="uk-container">
-	
+
 		<div th:each="m : ${msg}">
 			<span th:text="${m}"></span>
 		</div>
-	
-		<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
-		<div sec:authorize="hasRole('ROLE_ADMIN')">
-			<form action="/salvarUsuario" method="POST"
-				class="uk-form-horizontal uk-margin-large" th:object="${usuario}">
 
-				<div class="uk-margin uk-hidden">
-					<label class="uk-form-label" for="form-horizontal-text">Id:</label>
-					<div class="uk-form-controls">
-						<input class="uk-input" id="form-horizontal-text" name="id"
-							type="text" th:field="*{id}">
+		<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
+			<div sec:authorize="hasRole('ROLE_ADMIN')">
+				<form action="/salvarUsuario" method="POST"
+					class="uk-form-horizontal uk-margin-large" th:object="${usuario}">
+
+					<div class="uk-margin uk-hidden">
+						<label class="uk-form-label" for="form-horizontal-text">Id:</label>
+						<div class="uk-form-controls">
+							<input class="uk-input" id="form-horizontal-text" name="id"
+								type="text" th:field="*{id}">
+						</div>
 					</div>
-				</div>
-				<div class="uk-margin" >
-					<label class="uk-form-label" for="form-horizontal-text">Nome:</label>
-					<div class="uk-form-controls">
-						<input class="uk-input" id="form-horizontal-text" name="nome"
-							type="text" th:field="*{nome}">
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-text">Nome:</label>
+						<div class="uk-form-controls">
+							<input class="uk-input" id="form-horizontal-text" name="nome"
+								type="text" th:field="*{nome}">
+						</div>
 					</div>
-				</div>
-				<div class="uk-margin">
-					<label class="uk-form-label" for="form-horizontal-text">Sobrenome:</label>
-					<div class="uk-form-controls">
-						<input class="uk-input" id="form-horizontal-text" name="sobrenome"
-							th:field="*{sobrenome}">
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-text">Sobrenome:</label>
+						<div class="uk-form-controls">
+							<input class="uk-input" id="form-horizontal-text"
+								name="sobrenome" th:field="*{sobrenome}">
+						</div>
 					</div>
-				</div>
-				<button class="uk-button uk-button-primary" type="submit">SALVAR</button>
-			</form>
+
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-text">Cep:</label>
+						<div class="uk-form-controls">
+							<input class="uk-input" id="cep" name="cep" th:field="*{cep}"
+								type="text" size="10" maxlength="9" />
+						</div>
+					</div>
+					
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-text">Rua:</label>
+						<div class="uk-form-controls">
+							<input class="uk-input" id="rua" name="rua" th:field="*{rua}"
+								type="text" size="60"/>
+						</div>
+					</div>
+					
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-text">Bairro:</label>
+						<div class="uk-form-controls">
+							<input class="uk-input" id="bairro" name="bairro" th:field="*{bairro}"
+								type="text" size="40"/>
+						</div>
+					</div>
+					
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-text">Cidade:</label>
+						<div class="uk-form-controls">
+							<input class="uk-input" id="cidade" name="cidade" th:field="*{cidade}"
+								type="text" size="40"/>
+						</div>
+					</div>
+					
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-text">UF:</label>
+						<div class="uk-form-controls">
+							<input class="uk-input" id="uf" name="uf" th:field="*{uf}"
+								type="text" size="2"/>
+						</div>
+					</div>
+					
+						<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-text">Login:</label>
+						<div class="uk-form-controls">
+							<input class="uk-input" id="login" name="login" th:field="*{login}"
+								type="text"  min="8" maxlength="20"/>
+						</div>
+					</div>
+					
+						<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-text">senha:</label>
+						<div class="uk-form-controls">
+							<input class="uk-input" id="senha" name="senha" th:field="*{senha}"
+								type="text" size="60"/>
+						</div>
+					</div>
+					
+
+					<button class="uk-button uk-button-primary" type="submit">SALVAR</button>
+				</form>
 			</div>
 		</div>
 
-		<form class="uk-search uk-search-default" method="post" action="pesquisarUsuario">
-			
-			 <input class="uk-search-input"
-				type="search" placeholder="Busca por nome" name="nomePesquisado">
-				<button type="submit">Pesquisar</button>
+		<form class="uk-search uk-search-default" method="post"
+			action="pesquisarUsuario">
+
+			<input class="uk-search-input" type="search"
+				placeholder="Busca por nome" name="nomePesquisado">
+			<button type="submit">Pesquisar</button>
 		</form>
 
 		<table class="uk-table uk-table-justify uk-table-divider">
@@ -78,14 +142,16 @@ body {
 			<tbody>
 				<tr th:each="usuario : ${usuarios}">
 					<td th:text="${usuario.id}"></td>
-					<td><a th:href="@{/telefones/{id}(id=${usuario.id})}"><span th:text="${usuario.nome}"></span></a></td>
+					<td><a th:href="@{/telefones/{id}(id=${usuario.id})}"><span
+							th:text="${usuario.nome}"></span></a></td>
 					<td th:text="${usuario.sobrenome}"></td>
 					<td><a th:href="@{/editarUsuario/{id}(id=${usuario.id})}">editar</a>|
-					<a th:href="@{/excluirUsuario/{id}(id=${usuario.id})}">excluir</a>
+						<a th:href="@{/excluirUsuario/{id}(id=${usuario.id})}">excluir</a>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
+<script type="text/javascript" src="../../js/script.js"></script>
 </body>
 </html>
