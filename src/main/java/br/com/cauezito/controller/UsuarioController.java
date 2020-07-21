@@ -80,9 +80,18 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("**/pesquisarUsuario")
-	public ModelAndView pesquisarUsuario(@RequestParam("nomePesquisado") String nomePesquisado ) {
+	public ModelAndView pesquisarUsuario(@RequestParam("nomePesquisado") String nomePesquisado,
+			@RequestParam("generoPesquisado") String generoPesquisado) {
+		List<Usuario> usuarios = new ArrayList<Usuario>();
+		
+		if(generoPesquisado != null && !generoPesquisado.isEmpty()) {
+			usuarios = usuarioRepository.buscaUsuarioPorGenero(nomePesquisado, generoPesquisado);
+		} else {
+			usuarios = usuarioRepository.buscaUsuarioPorNome(nomePesquisado);
+		}
+		
 		ModelAndView mv = new ModelAndView("cadastro/usuario");
-		mv.addObject("usuarios", usuarioRepository.buscaUsuarioPorNome(nomePesquisado));
+		mv.addObject("usuarios", usuarios);
 		mv.addObject("usuario", new Usuario());
 		return mv;
 	}

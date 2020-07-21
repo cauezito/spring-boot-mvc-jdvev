@@ -13,7 +13,9 @@ import br.com.cauezito.model.Usuario;
 @Transactional
 public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
 	@Query("select u from Usuario u where u.nome like %?1%")
-	List<Usuario> buscaUsuarioPorNome(String nome);
+	List<Usuario> buscaUsuarioPorNome(String nome);	
+	@Query("select u from Usuario u where u.nome like %?1% and u.genero = ?2")
+	List<Usuario> buscaUsuarioPorGenero(String nome, String genero);
 	@Query("select u from Usuario u where u.login = ?1")
 	Usuario buscaUsuarioPorLogin(String login);
 }

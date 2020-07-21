@@ -66,7 +66,8 @@ body {
 						<div class="uk-form-controls">
 							<select class="uk-select" id="form-stacked-select"
 								th:field="*{genero}">
-								<option selected="selected"  value="">Qual é o seu gênero?</option>
+								<option selected="selected" value="">Qual é o seu
+									gênero?</option>
 								<option value="FEMININO" th:text="Feminino" />
 								<option value="MASCULINO" th:text="Masculino" />
 								<option value="NBINARIO" th:text="Nãobinário" />
@@ -137,14 +138,29 @@ body {
 			</div>
 		</div>
 
-		<form class="uk-search uk-search-default" method="post"
-			action="pesquisarUsuario">
-
-			<input class="uk-search-input" type="search"
-				placeholder="Busca por nome" name="nomePesquisado">
-			<button type="submit">Pesquisar</button>
-		</form>
-
+		<fieldset>
+		<legend>Pesquisar usuários</legend>
+			<form class="uk-search uk-search-default" method="post"
+				action="pesquisarUsuario">
+					
+					<label for="pesquisaNome">Pesquisar por nome</label>
+					<input class="uk-search-input" type="search" id="pesquisaNome"
+					name="nomePesquisado">
+					
+					<label for="pesquisaGenero">Pesquisar por gênero</label>
+					<select class="uk-select" id="form-stacked-select" name="generoPesquisado"	>
+								<option value=""  th:text="Todos"/>
+								<option value="FEMININO" th:text="Feminino" />
+								<option value="MASCULINO" th:text="Masculino" />
+								<option value="NBINARIO" th:text="Não-binário" />
+								<option value="OUTRO" th:text="Outro" />
+							</select>
+				
+					
+				<button type="submit">Pesquisar</button>
+			</form>
+		</fieldset>
+		
 		<table class="uk-table uk-table-justify uk-table-divider">
 			<thead>
 				<tr>
