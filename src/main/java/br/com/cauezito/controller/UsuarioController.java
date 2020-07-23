@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,7 @@ import br.com.cauezito.model.Telefone;
 import br.com.cauezito.model.Usuario;
 import br.com.cauezito.repository.TelefoneRepository;
 import br.com.cauezito.repository.UsuarioRepository;
+import br.com.cauezito.util.ReportUtil;
 
 @Controller
 public class UsuarioController {
@@ -31,6 +34,9 @@ public class UsuarioController {
 	
 	@Autowired
 	private TelefoneRepository telefoneRepository;
+	
+	@Autowired
+	private ReportUtil report;
 
 	@RequestMapping(method = RequestMethod.GET, value = "/cadastroUsuario")
 	public ModelAndView inicio() {
@@ -94,6 +100,13 @@ public class UsuarioController {
 		mv.addObject("usuarios", usuarios);
 		mv.addObject("usuario", new Usuario());
 		return mv;
+	}
+	
+	@GetMapping("**/pesquisarUsuario")
+	public void imprimirPdf(@RequestParam("nomePesquisado") String nomePesquisado,
+			@RequestParam("generoPesquisado") String generoPesquisado, HttpServletRequest request,
+			HttpServletResponse response) {
+		
 	}
 	
 	@GetMapping("/telefones/{id}")
