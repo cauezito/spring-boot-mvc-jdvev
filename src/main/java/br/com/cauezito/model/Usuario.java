@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -66,6 +68,9 @@ public class Usuario implements Serializable, UserDetails {
 	
 	@ManyToOne
 	private Profissao profissao;
+	
+	@Enumerated(EnumType.STRING)
+	private Cargo cargo;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -213,6 +218,15 @@ public class Usuario implements Serializable, UserDetails {
 	public void setProfissao(Profissao profissao) {
 		this.profissao = profissao;
 	}
+
+	public Cargo getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(Cargo cargo) {
+		this.cargo = cargo;
+	}
+	
 }
 	
 	

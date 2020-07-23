@@ -26,7 +26,7 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter{
 		//permite a restrição de acessos
 		.authorizeRequests()
 		//qualquer usuário acessa a página inicial
-		.antMatchers(HttpMethod.GET, "/").permitAll()
+		.antMatchers(HttpMethod.GET, "/").permitAll();/*
 		//apenas administradores acessam o cadastro
 		.antMatchers(HttpMethod.GET, "/cadastroUsuario").hasAnyRole("ADMIN")
 		.anyRequest().authenticated()
@@ -35,7 +35,7 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter{
 		//.defaultSuccessUrl("/teste")
 	//	.failureUrl("/login?opa=sim")
 		.and().logout() //mapeia url de logout e invalida usuário 
-		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"));*/
 		}
 	
 	//Cria autenticação do usuário (banco de dados ou memória)

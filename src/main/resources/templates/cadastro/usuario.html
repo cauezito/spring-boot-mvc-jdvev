@@ -85,6 +85,15 @@ body {
 						</div>
 					</div>
 					
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-stacked-select">Nível:</label>
+						<div class="uk-form-controls">
+							<select class="uk-select" id="form-stacked-select"
+								th:field="*{cargo}">
+								<option th:each = "c : ${T(br.com.cauezito.model.Cargo).values()}"  th:value = "${c}"  th:text="${c.nome}">
+							</select>
+						</div>
+					</div>					
 					
 
 					<div class="uk-margin">
