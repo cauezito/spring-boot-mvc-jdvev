@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.13.0.final using JasperReports Library version 6.13.0-46ada4d1be8f3c5985fd0b6146f3ed44caed6f05  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Usuarios" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="08a6137e-ba44-4719-8d80-47407c77376c">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Colecao usuarios sboot"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="cidade" class="java.lang.String">
+		<fieldDescription><![CDATA[cidade]]></fieldDescription>
+	</field>
+	<field name="bairro" class="java.lang.String">
+		<fieldDescription><![CDATA[bairro]]></fieldDescription>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<fieldDescription><![CDATA[nome]]></fieldDescription>
+	</field>
+	<field name="login" class="java.lang.String">
+		<fieldDescription><![CDATA[login]]></fieldDescription>
+	</field>
+	<field name="telefones" class="java.util.List">
+		<fieldDescription><![CDATA[telefones]]></fieldDescription>
+	</field>
+	<field name="cep" class="java.lang.String">
+		<fieldDescription><![CDATA[cep]]></fieldDescription>
+	</field>
+	<field name="senha" class="java.lang.String">
+		<fieldDescription><![CDATA[senha]]></fieldDescription>
+	</field>
+	<field name="uf" class="java.lang.String">
+		<fieldDescription><![CDATA[uf]]></fieldDescription>
+	</field>
+	<field name="genero" class="java.lang.String">
+		<fieldDescription><![CDATA[genero]]></fieldDescription>
+	</field>
+	<field name="id" class="java.lang.Long">
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<field name="sobrenome" class="java.lang.String">
+		<fieldDescription><![CDATA[sobrenome]]></fieldDescription>
+	</field>
+	<field name="rua" class="java.lang.String">
+		<fieldDescription><![CDATA[rua]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="59" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="20" width="550" height="39" uuid="674228e6-81e5-4bab-bc61-40f2417e68dc"/>
+				<textElement textAlignment="Center">
+					<font fontName="Constantia" size="27"/>
+				</textElement>
+				<text><![CDATA[Relação de usuários cadastrados no sistema]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="50">
+			<staticText>
+				<reportElement x="0" y="10" width="50" height="30" uuid="8eb79cef-bad4-4793-a8fe-2274a01fbaa7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="44b068d8-dae5-4a66-9324-50d35dd06ee4"/>
+				</reportElement>
+				<textElement>
+					<font fontName="constantia" size="17"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="70" y="10" width="210" height="30" uuid="b06b078c-0e00-4314-aea9-fc057ba42fed">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dc436aba-942a-4b5d-84e9-ed24095913ce"/>
+				</reportElement>
+				<textElement>
+					<font fontName="constantia" size="17"/>
+				</textElement>
+				<text><![CDATA[nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="10" width="60" height="30" uuid="5f1afcc8-4d53-41a9-b167-0bc4a4e25f01">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b824dbb0-6990-4ce8-ad70-f0e67296a534"/>
+				</reportElement>
+				<textElement>
+					<font fontName="constantia" size="17"/>
+				</textElement>
+				<text><![CDATA[genero]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="10" width="100" height="30" uuid="1593eecd-8548-4f2b-8f95-e9d1b2d960a7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4b88be8b-ebfb-419e-8aef-779e81ee10d8"/>
+				</reportElement>
+				<textElement>
+					<font fontName="constantia" size="17"/>
+				</textElement>
+				<text><![CDATA[UF]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="65" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="22" width="49" height="28" uuid="677736d5-552e-46e0-847f-63527a0c42c6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="44b068d8-dae5-4a66-9324-50d35dd06ee4"/>
+				</reportElement>
+				<textElement>
+					<font fontName="constantia" size="17"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="20" width="210" height="30" uuid="0b27576e-3cb0-45c4-b101-704f08aba418">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dc436aba-942a-4b5d-84e9-ed24095913ce"/>
+				</reportElement>
+				<textElement>
+					<font fontName="constantia" size="17"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="21" width="60" height="30" uuid="68cfa912-826f-4747-b57e-11a7c941c683">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b824dbb0-6990-4ce8-ad70-f0e67296a534"/>
+				</reportElement>
+				<textElement>
+					<font fontName="constantia" size="17"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{genero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="20" width="100" height="30" uuid="0649eb7a-e744-47e7-9dc7-2196651abf36">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4b88be8b-ebfb-419e-8aef-779e81ee10d8"/>
+				</reportElement>
+				<textElement>
+					<font fontName="constantia" size="17"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{uf}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

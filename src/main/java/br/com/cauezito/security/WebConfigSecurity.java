@@ -11,8 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import br.com.cauezito.repository.UsuarioRepository;
-
 @Configuration
 @EnableWebSecurity
 public class WebConfigSecurity extends WebSecurityConfigurerAdapter{
