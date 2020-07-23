@@ -15,7 +15,9 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
 	@Query("select u from Usuario u where u.nome like %?1%")
 	List<Usuario> buscaUsuarioPorNome(String nome);	
 	@Query("select u from Usuario u where u.nome like %?1% and u.genero = ?2")
-	List<Usuario> buscaUsuarioPorGenero(String nome, String genero);
+	List<Usuario> buscaUsuarioPorNomeEGenero(String nome, String genero);
 	@Query("select u from Usuario u where u.login = ?1")
 	Usuario buscaUsuarioPorLogin(String login);
+	@Query("select u from Usuario u where u.genero = ?1")
+	List<Usuario>buscaUsuarioPorGenero(String genero);
 }

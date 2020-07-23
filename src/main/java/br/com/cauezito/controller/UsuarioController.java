@@ -1,5 +1,6 @@
 package br.com.cauezito.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -91,7 +92,7 @@ public class UsuarioController {
 		List<Usuario> usuarios = new ArrayList<Usuario>();
 		
 		if(generoPesquisado != null && !generoPesquisado.isEmpty()) {
-			usuarios = usuarioRepository.buscaUsuarioPorGenero(nomePesquisado, generoPesquisado);
+			usuarios = usuarioRepository.buscaUsuarioPorNomeEGenero(nomePesquisado, generoPesquisado);
 		} else {
 			usuarios = usuarioRepository.buscaUsuarioPorNome(nomePesquisado);
 		}
@@ -107,6 +108,39 @@ public class UsuarioController {
 			@RequestParam("generoPesquisado") String generoPesquisado, HttpServletRequest request,
 			HttpServletResponse response) {
 		
+		List<Usuario> usuarios = new ArrayList<Usuario>();
+		
+		if(generoPesquisado != null && !generoPesquisado.isEmpty()
+				&& nomePesquisado != null && !nomePesquisado.isEmpty()) {
+				usuarios = usuarioRepository.buscaUsuarioPorNomeEGenero(nomePesquisado, generoPesquisado);
+		} else if (nomePesquisado != null && !nomePesquisado.isEmpty()) {
+				usuarios = usuarioRepository.buscaUsuarioPorNome(nomePesquisado);
+		} else if (generoPesquisado != null && !generoPesquisado.isEmpty()){
+				usuarios = usuarioRepository.buscaUsuarioPorGenero(generoPesquisado);
+		} else {
+				Iterable<Usuario> iterable = usuarioRepository.findAll();
+				for (Usuario usuario : iterable) {
+					usuarios.add(usuario);
+				}
+		}
+		
+		//gerador de relatório
+		byte[] pdf = report.gerarRelatorio(usuarios, "Usuarios", request.getServletContext());
+		
+		//define o tamanho 
+		response.setContentLength(pdf.length);
+		//define o tipo de arquivo
+		response.setContentType("application/octet-stream");
+		//define o cabeçalho 
+		String headerKey = "Content-Disposition";
+		String headerValue = String.format("attachment; filename=\"%s\"", "Usuarios.pdf");
+		response.setHeader(headerKey, headerValue);
+		//finaliza resposta para o navegador
+		try {
+			response.getOutputStream().write(pdf);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@GetMapping("/telefones/{id}")

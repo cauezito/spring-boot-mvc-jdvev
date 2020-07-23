@@ -47,7 +47,7 @@
 	<title>
 		<band height="59" splitType="Stretch">
 			<staticText>
-				<reportElement x="2" y="20" width="550" height="39" uuid="674228e6-81e5-4bab-bc61-40f2417e68dc"/>
+				<reportElement x="2" y="10" width="550" height="39" uuid="674228e6-81e5-4bab-bc61-40f2417e68dc"/>
 				<textElement textAlignment="Center">
 					<font fontName="Constantia" size="27"/>
 				</textElement>
@@ -58,38 +58,38 @@
 	<columnHeader>
 		<band height="50">
 			<staticText>
-				<reportElement x="0" y="10" width="50" height="30" uuid="8eb79cef-bad4-4793-a8fe-2274a01fbaa7">
+				<reportElement x="0" y="0" width="50" height="30" uuid="8eb79cef-bad4-4793-a8fe-2274a01fbaa7">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="44b068d8-dae5-4a66-9324-50d35dd06ee4"/>
 				</reportElement>
 				<textElement>
-					<font fontName="constantia" size="17"/>
+					<font fontName="Arial" size="17"/>
 				</textElement>
 				<text><![CDATA[ID]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="70" y="10" width="210" height="30" uuid="b06b078c-0e00-4314-aea9-fc057ba42fed">
+				<reportElement x="70" y="0" width="210" height="30" uuid="b06b078c-0e00-4314-aea9-fc057ba42fed">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dc436aba-942a-4b5d-84e9-ed24095913ce"/>
 				</reportElement>
 				<textElement>
-					<font fontName="constantia" size="17"/>
+					<font fontName="Arial" size="17"/>
 				</textElement>
 				<text><![CDATA[nome]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="300" y="10" width="60" height="30" uuid="5f1afcc8-4d53-41a9-b167-0bc4a4e25f01">
+				<reportElement x="300" y="0" width="60" height="30" uuid="5f1afcc8-4d53-41a9-b167-0bc4a4e25f01">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b824dbb0-6990-4ce8-ad70-f0e67296a534"/>
 				</reportElement>
 				<textElement>
-					<font fontName="constantia" size="17"/>
+					<font fontName="Arial" size="17"/>
 				</textElement>
 				<text><![CDATA[genero]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="380" y="10" width="100" height="30" uuid="1593eecd-8548-4f2b-8f95-e9d1b2d960a7">
+				<reportElement x="380" y="0" width="100" height="30" uuid="1593eecd-8548-4f2b-8f95-e9d1b2d960a7">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4b88be8b-ebfb-419e-8aef-779e81ee10d8"/>
 				</reportElement>
 				<textElement>
-					<font fontName="constantia" size="17"/>
+					<font fontName="Arial" size="17"/>
 				</textElement>
 				<text><![CDATA[UF]]></text>
 			</staticText>
@@ -102,7 +102,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="44b068d8-dae5-4a66-9324-50d35dd06ee4"/>
 				</reportElement>
 				<textElement>
-					<font fontName="constantia" size="17"/>
+					<font fontName="Arial" size="17"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
@@ -111,7 +111,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dc436aba-942a-4b5d-84e9-ed24095913ce"/>
 				</reportElement>
 				<textElement>
-					<font fontName="constantia" size="17"/>
+					<font fontName="Arial" size="17"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
@@ -120,16 +120,16 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b824dbb0-6990-4ce8-ad70-f0e67296a534"/>
 				</reportElement>
 				<textElement>
-					<font fontName="constantia" size="17"/>
+					<font fontName="Arial" size="17"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{genero}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="380" y="20" width="100" height="30" uuid="0649eb7a-e744-47e7-9dc7-2196651abf36">
+				<reportElement x="380" y="22" width="100" height="30" uuid="0649eb7a-e744-47e7-9dc7-2196651abf36">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4b88be8b-ebfb-419e-8aef-779e81ee10d8"/>
 				</reportElement>
 				<textElement>
-					<font fontName="constantia" size="17"/>
+					<font fontName="Arial" size="17"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{uf}]]></textFieldExpression>
 			</textField>
