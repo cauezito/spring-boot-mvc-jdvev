@@ -13,7 +13,7 @@
 <!-- UIkit CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/uikit@3.5.5/dist/css/uikit.min.css" />
-
+	
 <!-- UIkit JS -->
 <script
 	src="https://cdn.jsdelivr.net/npm/uikit@3.5.5/dist/js/uikit.min.js"></script>
@@ -34,175 +34,184 @@ body {
 		</div>
 
 		<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
-				<form action="/salvarUsuario" method="POST"
-					class="uk-form-horizontal uk-margin-large" th:object="${usuario}">
+			<form action="/salvarUsuario" method="POST"
+				class="uk-form-horizontal uk-margin-large" th:object="${usuario}">
 
-					<div class="uk-margin uk-hidden">
-						<label class="uk-form-label" for="form-horizontal-text">Id:</label>
-						<div class="uk-form-controls">
-							<input class="uk-input" id="form-horizontal-text" name="id"
-								type="text" th:field="*{id}">
-						</div>
+				<div class="uk-margin uk-hidden">
+					<label class="uk-form-label" for="form-horizontal-text">Id:</label>
+					<div class="uk-form-controls">
+						<input class="uk-input" id="form-horizontal-text" name="id"
+							type="text" th:field="*{id}">
 					</div>
-					<div class="uk-margin">
-						<label class="uk-form-label" for="form-horizontal-text">Nome:</label>
-						<div class="uk-form-controls">
-							<input class="uk-input" id="form-horizontal-text" name="nome"
-								type="text" th:field="*{nome}">
-						</div>
+				</div>
+				<div class="uk-margin">
+					<label class="uk-form-label" for="form-horizontal-text">Nome:</label>
+					<div class="uk-form-controls">
+						<input class="uk-input" id="form-horizontal-text" name="nome"
+							type="text" th:field="*{nome}">
 					</div>
-					<div class="uk-margin">
-						<label class="uk-form-label" for="form-horizontal-text">Sobrenome:</label>
-						<div class="uk-form-controls">
-							<input class="uk-input" id="form-horizontal-text"
-								name="sobrenome" th:field="*{sobrenome}">
-						</div>
+				</div>
+				<div class="uk-margin">
+					<label class="uk-form-label" for="form-horizontal-text">Sobrenome:</label>
+					<div class="uk-form-controls">
+						<input class="uk-input" id="form-horizontal-text" name="sobrenome"
+							th:field="*{sobrenome}">
 					</div>
-
-
-					<div class="uk-margin">
-						<label class="uk-form-label" for="form-stacked-select">Gênero</label>
-						<div class="uk-form-controls">
-							<select class="uk-select" id="form-stacked-select"
-								th:field="*{genero}">
-								<option selected="selected" value="">Qual é o seu
-									gênero?</option>
-								<option value="FEMININO" th:text="Feminino" />
-								<option value="MASCULINO" th:text="Masculino" />
-								<option value="NBINARIO" th:text="Nãobinário" />
-								<option value="OUTRO" th:text="Outro" />
-							</select>
-						</div>
-					</div>
-					
-					<div class="uk-margin">
-						<label class="uk-form-label" for="form-stacked-select">Profissão:</label>
-						<div class="uk-form-controls">
-							<select class="uk-select" id="form-stacked-select"
-								th:field="*{profissao.id}">
-								<option th:each = "p : ${profissoes}"  th:value = "${p.id}"  th:text="${p.nome}">
-							</select>
-						</div>
-					</div>
-					
-					<div class="uk-margin">
-						<label class="uk-form-label" for="form-stacked-select">Nível:</label>
-						<div class="uk-form-controls">
-							<select class="uk-select" id="form-stacked-select"
-								th:field="*{cargo}">
-								<option th:each = "c : ${T(br.com.cauezito.model.Cargo).values()}"  th:value = "${c}"  th:text="${c.nome}">
-							</select>
-						</div>
-					</div>					
-					
-
-					<div class="uk-margin">
-						<label class="uk-form-label" for="form-horizontal-text">Cep:</label>
-						<div class="uk-form-controls">
-							<input class="uk-input" id="cep" name="cep" th:field="*{cep}"
-								type="text" size="10" maxlength="9" />
-						</div>
-					</div>
-
-					<div class="uk-margin">
-						<label class="uk-form-label" for="form-horizontal-text">Rua:</label>
-						<div class="uk-form-controls">
-							<input class="uk-input" id="rua" name="rua" th:field="*{rua}"
-								type="text" size="60" />
-						</div>
-					</div>
-
-					<div class="uk-margin">
-						<label class="uk-form-label" for="form-horizontal-text">Bairro:</label>
-						<div class="uk-form-controls">
-							<input class="uk-input" id="bairro" name="bairro"
-								th:field="*{bairro}" type="text" size="40" />
-						</div>
-					</div>
-
-					<div class="uk-margin">
-						<label class="uk-form-label" for="form-horizontal-text">Cidade:</label>
-						<div class="uk-form-controls">
-							<input class="uk-input" id="cidade" name="cidade"
-								th:field="*{cidade}" type="text" size="40" />
-						</div>
-					</div>
-
-					<div class="uk-margin">
-						<label class="uk-form-label" for="form-horizontal-text">UF:</label>
-						<div class="uk-form-controls">
-							<input class="uk-input" id="uf" name="uf" th:field="*{uf}"
-								type="text" size="2" />
-						</div>
-					</div>
-
-					<div class="uk-margin">
-						<label class="uk-form-label" for="form-horizontal-text">Login:</label>
-						<div class="uk-form-controls">
-							<input class="uk-input" id="login" name="login"
-								th:field="*{login}" type="text" min="8" maxlength="20" />
-						</div>
-					</div>
-
-					<div class="uk-margin">
-						<label class="uk-form-label" for="form-horizontal-text">senha:</label>
-						<div class="uk-form-controls">
-							<input class="uk-input" id="senha" name="senha"
-								th:field="*{senha}" type="text" size="60" />
-						</div>
-					</div>
+				</div>
 
 
-					<button class="uk-button uk-button-primary" type="submit">SALVAR</button>
-				</form>
-			</div>
+				<div class="uk-margin">
+					<label class="uk-form-label" for="form-stacked-select">Gênero</label>
+					<div class="uk-form-controls">
+						<select class="uk-select" id="form-stacked-select"
+							th:field="*{genero}">
+							<option selected="selected" value="">Qual é o seu
+								gênero?</option>
+							<option value="FEMININO" th:text="Feminino" />
+							<option value="MASCULINO" th:text="Masculino" />
+							<option value="NBINARIO" th:text="Nãobinário" />
+							<option value="OUTRO" th:text="Outro" />
+						</select>
+					</div>
+				</div>
+
+				<div class="uk-margin">
+					<label class="uk-form-label" for="form-stacked-select">Data
+						de nascimento:</label> <input type="date" id="dataNasc"
+						data-uk-datepicker="{format:'DD.MM.YYYY'}" th:field="*{dataNasc}"
+						name="dataNasc" placeholder="Data de nascimento">
+				</div>
+
+				<div class="uk-margin">
+					<label class="uk-form-label" for="form-stacked-select">Profissão:</label>
+					<div class="uk-form-controls">
+						<select class="uk-select" id="form-stacked-select"
+							th:field="*{profissao.id}">
+							<option th:each="p : ${profissoes}" th:value="${p.id}"
+								th:text="${p.nome}">
+						</select>
+					</div>
+				</div>
+
+				<div class="uk-margin">
+					<label class="uk-form-label" for="form-stacked-select">Nível:</label>
+					<div class="uk-form-controls">
+						<select class="uk-select" id="form-stacked-select"
+							th:field="*{cargo}">
+							<option th:each="c : ${T(br.com.cauezito.model.Cargo).values()}"
+								th:value="${c}" th:text="${c.nome}">
+						</select>
+					</div>
+				</div>
+
+
+				<div class="uk-margin">
+					<label class="uk-form-label" for="form-horizontal-text">Cep:</label>
+					<div class="uk-form-controls">
+						<input class="uk-input" id="cep" name="cep" th:field="*{cep}"
+							type="text" size="10" maxlength="9" />
+					</div>
+				</div>
+
+				<div class="uk-margin">
+					<label class="uk-form-label" for="form-horizontal-text">Rua:</label>
+					<div class="uk-form-controls">
+						<input class="uk-input" id="rua" name="rua" th:field="*{rua}"
+							type="text" size="60" />
+					</div>
+				</div>
+
+				<div class="uk-margin">
+					<label class="uk-form-label" for="form-horizontal-text">Bairro:</label>
+					<div class="uk-form-controls">
+						<input class="uk-input" id="bairro" name="bairro"
+							th:field="*{bairro}" type="text" size="40" />
+					</div>
+				</div>
+
+				<div class="uk-margin">
+					<label class="uk-form-label" for="form-horizontal-text">Cidade:</label>
+					<div class="uk-form-controls">
+						<input class="uk-input" id="cidade" name="cidade"
+							th:field="*{cidade}" type="text" size="40" />
+					</div>
+				</div>
+
+				<div class="uk-margin">
+					<label class="uk-form-label" for="form-horizontal-text">UF:</label>
+					<div class="uk-form-controls">
+						<input class="uk-input" id="uf" name="uf" th:field="*{uf}"
+							type="text" size="2" />
+					</div>
+				</div>
+
+				<div class="uk-margin">
+					<label class="uk-form-label" for="form-horizontal-text">Login:</label>
+					<div class="uk-form-controls">
+						<input class="uk-input" id="login" name="login"
+							th:field="*{login}" type="text" min="8" maxlength="20" />
+					</div>
+				</div>
+
+				<div class="uk-margin">
+					<label class="uk-form-label" for="form-horizontal-text">senha:</label>
+					<div class="uk-form-controls">
+						<input class="uk-input" id="senha" name="senha"
+							th:field="*{senha}" type="text" size="60" />
+					</div>
+				</div>
+
+
+				<button class="uk-button uk-button-primary" type="submit">SALVAR</button>
+			</form>
 		</div>
+	</div>
 
-		<fieldset>
+	<fieldset>
 		<legend>Pesquisar usuários</legend>
-			<form class="uk-search uk-search-default" method="post"
-				action="pesquisarUsuario" id="pesquisarUsuario">
-					
-					<label for="pesquisaNome">Pesquisar por nome</label>
-					<input class="uk-search-input" type="search" id="pesquisaNome"
-					name="nomePesquisado">
-					
-					<label for="pesquisaGenero">Pesquisar por gênero</label>
-					<select class="uk-select" id="form-stacked-select" name="generoPesquisado"	>
-								<option value=""  th:text="Todos"/>
-								<option value="FEMININO" th:text="Feminino" />
-								<option value="MASCULINO" th:text="Masculino" />
-								<option value="NBINARIO" th:text="Não-binário" />
-								<option value="OUTRO" th:text="Outro" />
-							</select>
-				
-					
-				<button type="submit">Pesquisar</button>
-				<button type="submit" onclick="document.getElementById('pesquisarUsuario').method = 'get'">PDF</button>
-				</form>
-		</fieldset>
-		
-		<table class="uk-table uk-table-justify uk-table-divider">
-			<thead>
-				<tr>
-					<th class="uk-width-small">ID</th>
-					<th>Nome</th>
-					<th>Sobrenome</th>
-					<th>Ações</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="usuario : ${usuarios}">
-					<td th:text="${usuario.id}"></td>
-					<td><a th:href="@{/telefones/{id}(id=${usuario.id})}"><span
-							th:text="${usuario.nome}"></span></a></td>
-					<td th:text="${usuario.sobrenome}"></td>
-					<td><a th:href="@{/editarUsuario/{id}(id=${usuario.id})}">editar</a>|
-						<a th:href="@{/excluirUsuario/{id}(id=${usuario.id})}">excluir</a>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+		<form class="uk-search uk-search-default" method="post"
+			action="pesquisarUsuario" id="pesquisarUsuario">
+
+			<label for="pesquisaNome">Pesquisar por nome</label> <input
+				class="uk-search-input" type="search" id="pesquisaNome"
+				name="nomePesquisado"> <label for="pesquisaGenero">Pesquisar
+				por gênero</label> <select class="uk-select" id="form-stacked-select"
+				name="generoPesquisado">
+				<option value="" th:text="Todos" />
+				<option value="FEMININO" th:text="Feminino" />
+				<option value="MASCULINO" th:text="Masculino" />
+				<option value="NBINARIO" th:text="Não-binário" />
+				<option value="OUTRO" th:text="Outro" />
+			</select>
+
+
+			<button type="submit">Pesquisar</button>
+			<button type="submit"
+				onclick="document.getElementById('pesquisarUsuario').method = 'get'">PDF</button>
+		</form>
+	</fieldset>
+
+	<table class="uk-table uk-table-justify uk-table-divider">
+		<thead>
+			<tr>
+				<th class="uk-width-small">ID</th>
+				<th>Nome</th>
+				<th>Sobrenome</th>
+				<th>Ações</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="usuario : ${usuarios}">
+				<td th:text="${usuario.id}"></td>
+				<td><a th:href="@{/telefones/{id}(id=${usuario.id})}"><span
+						th:text="${usuario.nome}"></span></a></td>
+				<td th:text="${usuario.sobrenome}"></td>
+				<td><a th:href="@{/editarUsuario/{id}(id=${usuario.id})}">editar</a>|
+					<a th:href="@{/excluirUsuario/{id}(id=${usuario.id})}">excluir</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 	<script type="text/javascript" src="../../js/script.js"></script>
 </body>
 </html>

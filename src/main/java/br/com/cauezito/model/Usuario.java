@@ -2,6 +2,7 @@ package br.com.cauezito.model;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -17,19 +18,18 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import lombok.Getter;
-import lombok.Setter;
-
 @Entity
-
 public class Usuario implements Serializable, UserDetails {
 
 	private static final long serialVersionUID = 1L;
@@ -43,6 +43,10 @@ public class Usuario implements Serializable, UserDetails {
 	@NotEmpty(message = "O sobrenome deve ser preenchido")
 	@NotNull(message = "O sobrenome deve ser preenchido")
 	private String sobrenome;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
+	private Date dataNasc;
 
 	@Length(min = 8, max = 30)
 	private String login;
@@ -225,6 +229,14 @@ public class Usuario implements Serializable, UserDetails {
 
 	public void setCargo(Cargo cargo) {
 		this.cargo = cargo;
+	}
+
+	public Date getDataNasc() {
+		return dataNasc;
+	}
+
+	public void setDataNasc(Date dataNasc) {
+		this.dataNasc = dataNasc;
 	}
 	
 }
