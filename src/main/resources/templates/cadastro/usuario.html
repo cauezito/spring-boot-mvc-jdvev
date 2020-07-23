@@ -34,7 +34,6 @@ body {
 		</div>
 
 		<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
-			<div sec:authorize="hasRole('ROLE_ADMIN')">
 				<form action="/salvarUsuario" method="POST"
 					class="uk-form-horizontal uk-margin-large" th:object="${usuario}">
 
@@ -75,6 +74,18 @@ body {
 							</select>
 						</div>
 					</div>
+					
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-stacked-select">Profissão:</label>
+						<div class="uk-form-controls">
+							<select class="uk-select" id="form-stacked-select"
+								th:field="*{profissao.id}">
+								<option th:each = "p : ${profissoes}"  th:value = "${p.id}"  th:text="${p.nome}">
+							</select>
+						</div>
+					</div>
+					
+					
 
 					<div class="uk-margin">
 						<label class="uk-form-label" for="form-horizontal-text">Cep:</label>
@@ -183,7 +194,6 @@ body {
 				</tr>
 			</tbody>
 		</table>
-	</div>
 	<script type="text/javascript" src="../../js/script.js"></script>
 </body>
 </html>

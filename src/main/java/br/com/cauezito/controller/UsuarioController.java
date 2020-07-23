@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.cauezito.model.Telefone;
 import br.com.cauezito.model.Usuario;
+import br.com.cauezito.repository.ProfissaoRepository;
 import br.com.cauezito.repository.TelefoneRepository;
 import br.com.cauezito.repository.UsuarioRepository;
 import br.com.cauezito.util.ReportUtil;
@@ -37,6 +38,9 @@ public class UsuarioController {
 	private TelefoneRepository telefoneRepository;
 	
 	@Autowired
+	private ProfissaoRepository profissaoRepository;
+	
+	@Autowired
 	private ReportUtil report;
 
 	@RequestMapping(method = RequestMethod.GET, value = "/cadastroUsuario")
@@ -45,12 +49,14 @@ public class UsuarioController {
 		Iterable<Usuario> usuarios = usuarioRepository.findAll();
 		mv.addObject("usuarios", usuarios);
 		mv.addObject("usuario", new Usuario());
+		mv.addObject("profissoes", profissaoRepository.findAll());
 		return mv;
 	}
 	// ** = ignora tudo o que vier antes na url
 	@RequestMapping(method = RequestMethod.POST, value = "**/salvarUsuario")
 	public ModelAndView salvar(@Valid Usuario usuario, BindingResult bindingResult) {
 		ModelAndView mv = new ModelAndView("cadastro/usuario");
+		mv.addObject("profissoes", profissaoRepository.findAll());
 		if(bindingResult.hasErrors()) {
 			Iterable<Usuario> usuarios = usuarioRepository.findAll();
 			mv.addObject("usuarios", usuarios);
@@ -74,6 +80,7 @@ public class UsuarioController {
 		ModelAndView mv = new ModelAndView("cadastro/usuario");
 		Optional<Usuario> usuario = usuarioRepository.findById(id);
 		mv.addObject("usuario", usuario.get());
+		mv.addObject("profissoes", profissaoRepository.findAll());
 		return mv;
 	}
 	

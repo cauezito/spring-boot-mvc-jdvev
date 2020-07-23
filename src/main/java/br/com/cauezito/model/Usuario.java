@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotEmpty;
@@ -62,6 +63,9 @@ public class Usuario implements Serializable, UserDetails {
 	private String bairro;
 	private String uf;
 	private String cidade;
+	
+	@ManyToOne
+	private Profissao profissao;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -200,6 +204,14 @@ public class Usuario implements Serializable, UserDetails {
 
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
+	}
+
+	public Profissao getProfissao() {
+		return profissao;
+	}
+
+	public void setProfissao(Profissao profissao) {
+		this.profissao = profissao;
 	}
 }
 	
